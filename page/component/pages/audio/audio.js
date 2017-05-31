@@ -9,5 +9,8 @@ Page({
     audioAction: {
       method: 'pause'
     }
+  },
+  timeupdate: function(res) {
+    console.log(res)
   }
 })
