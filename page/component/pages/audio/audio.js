@@ -1,4 +1,9 @@
 Page({
+  onReady: function (e) {
+    // 使用 wx.createAudioContext 获取 audio 上下文 context
+    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioCtx.play()
+  },
   data: {
     current: {
       poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
@@ -8,9 +13,26 @@ Page({
     },
     audioAction: {
       method: 'pause'
+    },
+    slider: {
+      current:0,
+      min:0,
+      max:0
     }
   },
-  timeupdate: function(res) {
-    console.log(res)
+  timeupdate: function(e) {
+    console.log('播放进度：' + parseInt(e.detail.currentTime) + '/' + parseInt(e.detail.duration))
+    var that = this;
+    that.setData({
+      slider: {
+        current: parseInt(e.detail.currentTime),
+        min: 0,
+        max: parseInt(e.detail.duration)
+      }
+    })
+  },
+  sliderchange:function(e) {
+    console.log('slider发生change事件，携带值为', e.detail.value)
+    this.audioCtx.seek(parseInt(e.detail.value))
   }
 })
