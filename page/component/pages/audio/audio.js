@@ -17,7 +17,8 @@ Page({
     slider: {
       current:0,
       min:0,
-      max:0
+      max:0,
+      progress_tip: ''
     }
   },
   timeupdate: function(e) {
@@ -27,9 +28,33 @@ Page({
       slider: {
         current: parseInt(e.detail.currentTime),
         min: 0,
-        max: parseInt(e.detail.duration)
+        max: parseInt(e.detail.duration),
+        progress_tip: parseInt((parseInt(e.detail.currentTime) / 60)) + ':' + parseInt((parseInt(e.detail.currentTime) % 60)) + '/' + parseInt((parseInt(e.detail.duration) / 60)) + ':' + parseInt((parseInt(e.detail.duration) % 60))
       }
     })
+  },
+  finished: function() {
+    console.log('播放完成，自动播放下一首歌曲')
+    var that = this;
+    that.setData({
+      current: {
+        poster: 'http://www.yatibang.com/images/ytbimg/ioserweima.png',
+        name: '第二首歌曲',
+        author: '某明星',
+        src: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
+      },
+      audioAction: {
+        method: 'pause'
+      },
+      slider: {
+        current: 0,
+        min: 0,
+        max: 0,
+        progress_tip: ''
+      }
+    })
+    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioCtx.play()
   },
   sliderchange:function(e) {
     console.log('slider发生change事件，携带值为', e.detail.value)

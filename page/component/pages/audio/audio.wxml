@@ -6,8 +6,8 @@
 
   <view class="page-body">
     <view class="page-section page-section-gap" style="text-align: center;">
-      <audio id="myAudio" style="text-align: left" src="{{current.src}}" poster="{{current.poster}}" name="{{current.name}}" author="{{current.author}}" action="{{audioAction}}" controls bindtimeupdate="timeupdate"></audio>
-      <view class="page-section-title">进度:{{slider.current}}/{{slider.max}}</view>
+      <audio id="myAudio" style="text-align: left" src="{{current.src}}" poster="{{current.poster}}" name="{{current.name}}" author="{{current.author}}" action="{{audioAction}}" controls bindtimeupdate="timeupdate" bindended="finished"></audio>
+      <view class="page-section-title">进度:{{slider.progress_tip}}</view>
       <view class="body-view">
         <slider value="{{slider.current}}" bindchange="sliderchange" min="{{slider.min}}" max="{{slider.max}}" show-value/>
       </view>
