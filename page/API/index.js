@@ -118,6 +118,9 @@ Page({
           }, {
             zh: '背景音频',
             url: 'background-audio/background-audio'
+          },{
+            zh: '背景音频2',
+            url: 'background-audio2/background-audio2'
           }, {
             zh: '文件',
             url: 'file/file'

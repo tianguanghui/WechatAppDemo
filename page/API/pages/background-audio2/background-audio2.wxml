@@ -1,0 +1,2 @@
+<!--background-audio2.wxml-->
+<text>测试wx.getBackgroundAudioManager()</text>

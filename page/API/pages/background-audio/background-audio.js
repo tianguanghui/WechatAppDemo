@@ -77,6 +77,7 @@ Page({
     function update() {
       wx.getBackgroundAudioPlayerState({
         success: function (res) {
+          console.log('调用背景音乐更新方法'+res.currentPosition);
           that.setData({
             playTime: res.currentPosition,
             formatedPlayTime: util.formatTime(res.currentPosition + 1)
